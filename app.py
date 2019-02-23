@@ -1,7 +1,10 @@
+import os
+import urllib
+
 from flask import Flask, redirect
 from flask import render_template
 from flask import request
-import urllib
+
 app = Flask(__name__)
 
 
@@ -15,3 +18,8 @@ def index():
         url = f"https://wa.me/55{ddd}{number}?{text_encoded}"
         return redirect(url)
     return render_template('index.html', name=index)
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
